@@ -17,12 +17,13 @@ class _PokeViewState extends State<PokeView> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          FutureBuilder<Pokemon>(
-              future: controller.pokemon,
+          StreamBuilder<Pokemon>(
+              stream: controller.streamPokemon.stream,
               builder: (context, snapshot) {
-                if (snapshot.connectionState != ConnectionState.done) {
+                if (snapshot.connectionState != ConnectionState.active) {
                   return CircularProgressIndicator();
                 }
+
                 if (snapshot.hasData) {
                   return Container(
                     padding: EdgeInsets.all(10),
