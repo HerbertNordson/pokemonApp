@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pokemon/poke_controller.dart';
+import 'package:pokemon/poke_viewmodel.dart';
 import 'package:pokemon/pokemon.dart';
 
 class PokeView extends StatefulWidget {
@@ -8,7 +8,7 @@ class PokeView extends StatefulWidget {
 }
 
 class _PokeViewState extends State<PokeView> {
-  final controller = PokeController();
+  final controller = PokeViewModel();
 
   @override
   Widget build(BuildContext context) {
@@ -72,9 +72,9 @@ class _PokeViewState extends State<PokeView> {
             padding: EdgeInsets.all(10),
             child: ElevatedButton(
                 onPressed: () {
-                  setState(() {
+                  
                     controller.loadPokemon();
-                  });
+                  
                 },
                 child: Text(
                   'Carregar Pokemon',

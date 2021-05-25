@@ -4,7 +4,7 @@ import 'dart:math';
 import 'package:pokemon/poke_model.dart';
 import 'pokemon.dart';
 
-class PokeController {
+class PokeViewModel {
   final _model = PokeModel();
 
   Future<Pokemon> get pokemon => _model.pokemon;
