@@ -7,8 +7,6 @@ import 'pokemon.dart';
 class PokeViewModel {
   final _model = PokeModel();
 
-  Future<Pokemon> get pokemon => _model.pokemon;
-
   StreamController<Pokemon> streamPokemon = StreamController();
 
   loadPokemon() {

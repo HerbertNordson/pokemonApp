@@ -25,39 +25,65 @@ class _PokeViewState extends State<PokeView> {
                 }
 
                 if (snapshot.hasData) {
-                  return Container(
-                    padding: EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                        color: Colors.yellow,
-                        borderRadius: BorderRadius.circular(20),
-                        border: Border.all(
-                          color: Colors.white,
-                          width: 10,
-                        )),
-                    child: Column(children: [
+                  return Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
                       Container(
+                        padding: EdgeInsets.all(10),
                         decoration: BoxDecoration(
+                            color: Colors.yellow,
                             borderRadius: BorderRadius.circular(20),
-                            color: Colors.white,
                             border: Border.all(
                               color: Colors.white,
                               width: 10,
                             )),
-                        child: Image.network(
-                          snapshot.data.urlImage,
-                          height: 300,
-                          width: 300,
-                          fit: BoxFit.cover,
+                        child: Container(
+                          child: Column(children: [
+                            Container(
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20),
+                                  color: Colors.white,
+                                  border: Border.all(
+                                    color: Colors.white,
+                                    width: 10,
+                                  )),
+                              child: Image.network(
+                                snapshot.data.urlImage,
+                                height: 300,
+                                width: 300,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                            Text(
+                              snapshot.data.nome,
+                              style: TextStyle(
+                                  fontSize: 40,
+                                  color: Colors.green,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ]),
                         ),
                       ),
-                      Text(
-                        snapshot.data.nome,
-                        style: TextStyle(
-                            fontSize: 40,
-                            color: Colors.green,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ]),
+                      Container(
+                        height: 150,
+                        width: 150,
+                        margin: EdgeInsets.all(2),
+                        alignment: Alignment.center,
+                        child: Center(
+                          child: ListView.builder(
+                            itemCount: snapshot.data.abilities.length,
+                            itemBuilder: (context, index) {
+                              return Text(
+                                snapshot.data.abilities[index].name,
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 24),
+                              );
+                            },
+                          ),
+                        ),
+                      )
+                    ],
                   );
                 } else if (snapshot.hasError) {
                   return Text(
@@ -72,9 +98,7 @@ class _PokeViewState extends State<PokeView> {
             padding: EdgeInsets.all(10),
             child: ElevatedButton(
                 onPressed: () {
-                  
-                    controller.loadPokemon();
-                  
+                  controller.loadPokemon();
                 },
                 child: Text(
                   'Carregar Pokemon',
